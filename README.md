@@ -1,20 +1,5 @@
 
-local client = game:GetService('Players').LocalPlayer;
-local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
-
-local function fail(r) return client:Ban(r) end
-
--- gracefully handle errors when loading external scripts
-local function urlLoad(url)
-    local success, result = pcall(game.HttpGet, game, url)
-    if (not success) then
-        return fail(string.format('Failed to GET url %q for reason: %q', url, tostring(result)))
-    end
-
-    local fn, err = loadstring(result)
-    if (type(fn) ~= 'function') then
-        return fail(string.format('Failed to loadstring url %q for reason: %q', url, tostring(err)))
-    end
+ 
 
     local results = { pcall(fn) }
     if (not results[1]) then
