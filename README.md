@@ -1,6 +1,12 @@
 
  
 
+local client = game:GetService('Players').LocalPlayer;
+local set_identity = (type(syn) == 'table' and syn.set_thread_identity) or setidentity or setthreadcontext
+
+local function fail(r) return client:Kick(r) end
+
+-- gracefully handle errors when loading enternal scripts
     local results = { pcall(fn) }
     if (not results[1]) then
         return fail(string.format('Failed to initialize url %q for reason: %q', url, tostring(results[2])))
@@ -416,3 +422,4 @@ end
 window:AddLabel({ text = 'thx for reviving me' })
         window:AddLabel({ text = 'unofficial' })
         window:AddLabel({ text = 'copied from another hack' })
+end
